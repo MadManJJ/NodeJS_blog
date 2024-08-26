@@ -8,9 +8,8 @@ router.get('', (req, res) => {
         description: "Simple Blog created with Nodejs, Express & MongoDb."
     }
     const x = "bob";
-
-
-    res.render('index',{ locals,x }); //index.ejs
+    
+    res.render('index', { locals, x }); //index.ejs
 });
 
 router.get('/about', (req, res) => {
