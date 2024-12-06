@@ -15,7 +15,7 @@
 
 *{
     font-family: "Poppins", sans-serif;
-    /* box-sizing: border-box; */
+    box-sizing: border-box;
     /* text-decoration: none; */
 }
 
@@ -97,6 +97,7 @@ img{
 /* Header */
 
 .header{
+    /* background-color: aqua; */
     display: grid;
     align-items: center;
     grid-template-columns: 1fr 1fr;
@@ -118,8 +119,9 @@ img{
 }
 
 .header__logo{
-    box-sizing: content-box;
-    padding: 5px 10px 5px 40px;
+    /* width: 100%; */
+    /* background-color: red; */
+    padding: 5px 10px 5px 10px;
     grid-area: logo;
     font-weight: 800;
     font-size: 25px;
@@ -132,25 +134,10 @@ img{
     color: #FAF5EE;
     background-color: var(--black);
     border-radius: 10px;
-    /* font-size: 45px; */
 }
-
-/* .header__logo::after{
-    content: "";
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 0;
-    height: 3px;
-    background-color: #000; 
-    transition: width 0.5s ease; 
-}
-
-.header__logo:hover::after{
-    width: 100%;
-} */
 
 .header__nav{
+    /* background-color: blue; */
     grid-area: menu;
     display: flex;
     justify-content: center;
@@ -234,16 +221,22 @@ img{
 
 .article__heading{
     margin-top: 4rem;
-    font-weight: 400;
+    margin-bottom: 0;
+    font-weight: 600;
 }
 
 .article-ul{
+    /* background-color: red; */
     list-style-type: none;
     padding: 0;
     margin: 0;
-    font-size: clamp(1.3rem, calc(1.08rem + 0.22vw) , 1.25rem);
+    margin-top: 35px;
+    /* background-color: red; */
+    font-size: clamp(1.13rem, calc(1.08rem + 0.22vw) , 1.25rem);
     display: flex;
     flex-direction: column;
+    gap: 25px;
+    margin-bottom: 25px;
 }
 
 .article-list__date{
@@ -258,7 +251,8 @@ img{
     flex-direction: column;
     justify-content: space-between;
     text-decoration: none;
-    margin: 18px 0;
+    padding: 8px;
+    margin: 0 0;
 }
 
 @media only screen and (min-width: 768px){
@@ -294,7 +288,7 @@ img{
     font-size: 1.3rem;
     color: var(--gray);
     text-decoration: none;
-    margin-top: 40px;
+    /* margin-top: 40px; */
     display: inline-block;
 }
 
@@ -304,9 +298,9 @@ img{
     transition: 0.5s;
 }
 
-.article{
+/* .article{
     white-space: pre-wrap;
-}
+} */
 
 .footer{
     margin: 4rem;
@@ -316,8 +310,8 @@ img{
 /* SearchBar */
 
 .searchBar{
-    visibility: hidden;
-    transform: translateY(-100px);
+    /* visibility: hidden;
+    transform: translateY(-100px); */
     background-color: var(--black);
     padding: 4px 0;
     position: absolute;
