@@ -2,6 +2,7 @@
 
 :root{
     --black: #1c1c1c;
+    /* --black2: #1c1c1c1; */
     --gray: #7E7E7E;
     --gray-light: #E4E4E4;
     --red: #b30000;
@@ -14,6 +15,7 @@
 
 *{
     font-family: "Poppins", sans-serif;
+    /* box-sizing: border-box; */
     /* text-decoration: none; */
 }
 
@@ -23,6 +25,7 @@ body{
     font-size: var(--font-size-base);
     background-color: #FAF5EE;
     margin: 0;
+    box-sizing: border-box;
 }
 
 a { color: black; }
@@ -68,6 +71,7 @@ img{
 /* Layout */
 
 .container{
+    /* background-color: black; */
     max-width: 982px;
     margin: 0 auto;
     padding: 0 10px;
@@ -97,7 +101,7 @@ img{
     align-items: center;
     grid-template-columns: 1fr 1fr;
     grid-template-rows: auto;
-    padding-top: 10px;
+    padding-top: 15px;
     grid-template-areas: 
     "logo button"
     "menu menu"
@@ -114,15 +118,37 @@ img{
 }
 
 .header__logo{
+    box-sizing: content-box;
+    padding: 5px 10px 5px 40px;
     grid-area: logo;
     font-weight: 800;
     font-size: 25px;
     text-decoration: none;
+    position: relative;
+    transition: 0.2s;
 }
 
 .header__logo:hover{
-    text-decoration: underline;
+    color: #FAF5EE;
+    background-color: var(--black);
+    border-radius: 10px;
+    /* font-size: 45px; */
 }
+
+/* .header__logo::after{
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 3px;
+    background-color: #000; 
+    transition: width 0.5s ease; 
+}
+
+.header__logo:hover::after{
+    width: 100%;
+} */
 
 .header__nav{
     grid-area: menu;
@@ -153,23 +179,38 @@ img{
 
 .header__button button:hover{
     border: 2px solid var(--black);
+    background-color: var(--gray-light);
 }
 
 .header__nav ul{
     list-style-type: none;
     display: flex;
-    gap: 1rem;
+    gap: 1.5rem;
     font-weight: 600;
     pad: 0px;
 }
 
 .header__nav ul a{
-    padding: 10px;
+    /* margin-right: 2px; */
+    padding: 0px;
     text-decoration: none;
+    position: relative;
+    /* background-color: red; */
 }
 
-.header__nav ul a:hover{
-    text-decoration: underline;
+.header__nav ul a::after {
+    content: '';  /* This creates an empty pseudo-element */
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2px; /* You can adjust the thickness of the underline */
+    background-color: #000; /* Color of the underline */
+    transition: width 0.5s ease; /* Smooth transition on width change */
+}
+
+.header__nav ul a:hover::after{
+    width: 100%;
 }
 
 .header__nav ul a.active{
@@ -258,7 +299,9 @@ img{
 }
 
 .pagination:hover{
+    transform: scale(1.05);
     color:var(--black);
+    transition: 0.5s;
 }
 
 .article{
@@ -280,4 +323,55 @@ img{
     position: absolute;
     left: 0;
     right: 0;
+}
+
+.searchBar.open{
+    transform: translateY(0);
+    transition: transform 0.1s;
+}
+
+.searchBar input {
+    margin: 0;
+    padding: 0;
+}
+
+#searchClose {
+    position: absolute;
+    top: 0;
+    right: 0;
+    color: var(--gray-light);
+    padding: 15px;
+}
+
+
+/* Dashboard Admin */
+.admin-title{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.admin-posts{
+    padding: 0;
+    margin: 0;
+}
+
+.admin-post-controls form{
+    display: inline-block;
+}
+
+.admin-post-controls .btn{
+    display: inline-block;
+    background-color: var(--black);
+    border: 0;
+    text-decoration: none;
+    font-size: 0.8rem;
+    padding: 4px 8px;
+    line-height: 2;
+}
+
+.admin-post li{
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 0;
 }
