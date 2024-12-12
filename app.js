@@ -1,9 +1,9 @@
-require('dotenv').config();
+require("dotenv").config();
 
-const express = require('express');
-const expressLayout = require('express-ejs-layouts');
+const express = require("express");
+const expressLayout = require("express-ejs-layouts");
 
-const connectDB = require('./server/config/db');
+const connectDB = require("./server/config/db");
 
 const app = express();
 const PORT = 5000 || process.env.PORT;
@@ -11,15 +11,19 @@ const PORT = 5000 || process.env.PORT;
 // Connect to DB
 connectDB();
 
-app.use(express.static('public')); //so we don't have to go back ward at main.ejs when we link css just /css/style.css
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
+
+app.use(express.static("public")); //so we don't have to go back ward at main.ejs when we link css just /css/style.css
 
 // Templating Engine
 app.use(expressLayout);
-app.set('layout', './layouts/main');
-app.set('view engine', 'ejs');
+app.set("layout", "./layouts/main");
+app.set("view engine", "ejs");
 
-app.use('/', require('./server/routes/main'));
+app.use("/", require("./server/routes/main"));
+app.use("/", require("./server/routes/admin"));
 
-app.listen(PORT , () => {
-    console.log(`App listening on port ${PORT}`);
+app.listen(PORT, () => {
+  console.log(`App listening on port ${PORT}`);
 });
