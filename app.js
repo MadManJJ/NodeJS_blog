@@ -2,17 +2,33 @@ require("dotenv").config();
 
 const express = require("express");
 const expressLayout = require("express-ejs-layouts");
+const cookieParser = require("cookie-parser");
+const MongoStore = require("connect-mongo");
 
 const connectDB = require("./server/config/db");
+const session = require("express-session");
 
 const app = express();
-const PORT = 5000 || process.env.PORT;
+const PORT = process.env.PORT || 5000;
 
 // Connect to DB
 connectDB();
 
+// Middleware
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
+app.use(cookieParser());
+
+app.use(
+  session({
+    secret: "keyboard cat",
+    resave: false,
+    saveUninitialized: true,
+    store: MongoStore.create({
+      mongoUrl: process.env.MONGODB_URI,
+    }),
+  })
+);
 
 app.use(express.static("public")); //so we don't have to go back ward at main.ejs when we link css just /css/style.css
 
