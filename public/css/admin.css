@@ -117,8 +117,8 @@ img {
 
 @media only screen and (min-width: 768px) {
   .header {
-    grid-template-columns: auto 1fr auto auto;
-    grid-template-areas: "logo menu button login-btn";
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-areas: "logo menu button";
   }
   .login-btn {
     margin-left: 20px;
@@ -179,28 +179,26 @@ img {
   text-align: center;
   font-size: 20px;
   font-weight: 600;
-  transition: all 0.2s ease;
   padding: 5px;
   a {
     text-decoration: none;
+    transition: all 0.2s ease;
+    padding: 10px;
   }
 }
 
-.login-btn:hover {
+.login-btn:hover a {
   background-color: #000;
   border-radius: 10px;
-
-  a {
-    color: white;
-  }
+  color: white;
 }
 
 .header__nav ul {
   list-style-type: none;
+  padding: 0;
   display: flex;
   gap: 1.5rem;
   font-weight: 600;
-  pad: 0px;
 }
 
 .header__nav ul a {
@@ -363,9 +361,6 @@ img {
   padding: 15px;
 }
 
-.searchContainer {
-}
-
 /* Dashboard Admin */
 .admin-title {
   display: flex;
@@ -392,8 +387,14 @@ img {
   line-height: 2;
 }
 
-.admin-post li {
+.admin-posts li {
   display: flex;
   justify-content: space-between;
   padding: 10px 0;
+}
+
+#welcome {
+  text-align: center;
+  font-weight: 800;
+  font-size: 2rem;
 }

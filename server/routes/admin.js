@@ -18,7 +18,7 @@ const authMiddleware = (req, res, next) => {
 
   try {
     const decoded = jwt.verify(token, jwtSecret);
-    req.userId = decoded.userId;
+    req.userId = decoded.userId; // maybe we want to use the data of the user like const user = await User.findById(req.userId) then we can use it (i use it in the dashboard)
     next();
   } catch (error) {
     return res.status(401).json({ message: "Unauthorized" });
@@ -67,7 +67,34 @@ router.post("/admin", async (req, res) => {
 // GET
 // Dashboard
 router.get("/dashboard", authMiddleware, async (req, res) => {
-  res.render("admin/dashboard");
+  try {
+    const locals = {
+      title: "Admin",
+      description: "Simple Blog created with NodeJs, Express & MongoDb.",
+    };
+    const user = await User.findById(req.userId); // Access userId from req from the authMiddleware when we attach it req.userId = decoded.userId; line 21
+    const data = await Post.find();
+    res.render("admin/dashboard", { user, data, locals, layout: adminLayout }); // Pass user data to template
+  } catch (error) {
+    console.log(error);
+    res.status(500).send("Internal Server Error");
+  }
+});
+
+// GET
+// Admin - Create New post
+router.get("/add-post", authMiddleware, async (req, res) => {
+  try {
+    const locals = {
+      title: "Add Post",
+      description: "Simple Blog created with NodeJs, Express & MongoDb.",
+    };
+    const data = await Post.find();
+    res.render("admin/add-post", { data, locals }); // Pass user data to template
+  } catch (error) {
+    console.log(error);
+    res.status(500).send("Internal Server Error");
+  }
 });
 
 // POST
