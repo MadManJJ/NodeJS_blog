@@ -73,7 +73,7 @@ router.get("/dashboard", authMiddleware, async (req, res) => {
       description: "Simple Blog created with NodeJs, Express & MongoDb.",
     };
     const user = await User.findById(req.userId); // Access userId from req from the authMiddleware when we attach it req.userId = decoded.userId; line 21
-    const data = await Post.find();
+    const data = await Post.find(); // All
     res.render("admin/dashboard", { user, data, locals, layout: adminLayout }); // Pass user data to template
   } catch (error) {
     console.log(error);
@@ -90,11 +90,83 @@ router.get("/add-post", authMiddleware, async (req, res) => {
       description: "Simple Blog created with NodeJs, Express & MongoDb.",
     };
     const data = await Post.find();
-    res.render("admin/add-post", { data, locals }); // Pass user data to template
+    res.render("admin/add-post", { data, locals, layout: adminLayout }); // Pass user data to template
   } catch (error) {
     console.log(error);
     res.status(500).send("Internal Server Error");
   }
+});
+
+// POST
+// Admin - Create New post
+router.post("/add-post", authMiddleware, async (req, res) => {
+  try {
+    try {
+      const newPost = new Post({
+        title: req.body.title,
+        body: req.body.body,
+      });
+
+      await Post.create(newPost);
+      res.redirect("/dashboard");
+    } catch (error) {
+      console.log(error);
+    }
+  } catch (error) {
+    console.log(error);
+  }
+});
+
+// GET
+// Admin - Create New post
+router.get("/edit-post/:id", authMiddleware, async (req, res) => {
+  try {
+    const locals = {
+      title: "Add Post",
+      description: "Simple Blog created with NodeJs, Express & MongoDb.",
+    };
+    const data = await Post.findOne({ _id: req.params.id });
+    res.render("admin/edit-post", {
+      data,
+      layout: adminLayout,
+      locals,
+    });
+  } catch (error) {
+    console.log(error);
+  }
+});
+
+// PUT
+// Admin - Create New post
+router.put("/edit-post/:id", authMiddleware, async (req, res) => {
+  try {
+    await Post.findByIdAndUpdate(req.params.id, {
+      title: req.body.title,
+      body: req.body.body,
+      updatedAt: Date.now(),
+    });
+    res.redirect(`/edit-post/${req.params.id}`);
+  } catch (error) {
+    console.log(error);
+  }
+});
+
+// DELETE
+// Admin - DELETE post
+router.delete("/delete-post/:id", authMiddleware, async (req, res) => {
+  try {
+    await Post.deleteOne({ _id: req.params.id });
+    res.redirect("/dashboard");
+  } catch (error) {
+    console.log(error);
+  }
+});
+
+// GET
+// Admin - Logout
+router.get("/logout", async (req, res) => {
+  res.clearCookie("token");
+  res.redirect("/");
 });
 
 // POST
