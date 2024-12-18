@@ -122,7 +122,7 @@ router.post("/add-post", authMiddleware, async (req, res) => {
 router.get("/edit-post/:id", authMiddleware, async (req, res) => {
   try {
     const locals = {
-      title: "Add Post",
+      title: "Edit Post",
       description: "Simple Blog created with NodeJs, Express & MongoDb.",
     };
     const data = await Post.findOne({ _id: req.params.id });

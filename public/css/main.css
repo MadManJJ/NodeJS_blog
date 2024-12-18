@@ -29,7 +29,7 @@ body {
 }
 
 a {
-  color: black;
+  color: rgb(0, 0, 0);
 }
 h1 {
   font-size: var(--font-size-xl);
@@ -229,7 +229,7 @@ img {
 }
 
 .author {
-  padding: 10px 0;
+  padding: 10px 0 0 0;
   text-align: center;
 }
 
@@ -241,6 +241,25 @@ img {
 .author__body {
   font-size: var(--font-size-md);
   margin: 5px 0 40px 0;
+}
+
+.dashboard {
+  text-align: center;
+  margin-top: 50px;
+}
+
+.dashboard a {
+  display: inline-block;
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 30px;
+  transition: all ease 0.3s;
+  color: rgb(0, 0, 0);
+}
+
+.dashboard a:hover {
+  color: rgb(95, 93, 93);
+  transform: scale(1.05);
 }
 
 .article__heading {
@@ -289,23 +308,56 @@ img {
 .article-ul li {
   font-size: 24px;
   cursor: pointer;
-  transition: filter 0.1s;
+  transition: all 300ms cubic-bezier(0.075, 0.82, 0.165, 1);
+  position: relative;
 }
 
-.article-ul li:not(:last-child) {
-  border-bottom: 1px solid var(--gray-light);
+.article-ul li::before,
+.article-ul li::after {
+  content: "";
+  pointer-events: none;
+  position: absolute;
+  border: 0px solid transparent;
+  width: 0%;
+  height: 0%;
+  bottom: 0%;
+  right: 0%;
 }
 
-/* .article-ul li:hover{
-    filter: none;
-} */
+.article-ul li::before {
+  border-bottom-width: 2px;
+  border-left-width: 2px;
+}
 
-.article-ul:hover li {
-  filter: blur(3px);
+.article-ul li::after {
+  border-top-width: 2px;
+  border-right-width: 2px;
 }
 
 .article-ul li:hover {
-  filter: none;
+  transform: scale(1.005);
+  padding: 8px;
+  background-color: rgba(161, 159, 159, 0.25);
+
+  span {
+    color: rgb(0, 0, 0);
+  }
+}
+
+.article-ul li:hover::before,
+.article-ul li:hover::after {
+  border-color: black;
+  transition: border-color 0s, width 0.3s, height 0.3s;
+  width: 100%;
+  height: 100%;
+}
+
+.article-ul li:hover::before {
+  transition-delay: 0s, 0s, 0.3s;
+}
+
+.article-ul li:hover::after {
+  transition-delay: 0s, 0.3s, 0s;
 }
 
 .pagination {
@@ -335,30 +387,86 @@ img {
 
 .searchBar {
   visibility: hidden;
-  transform: translateY(-100px);
-  background-color: var(--black);
-  padding: 4px 0;
-  position: absolute;
+  transform: translateY(-100%); /* Start off-screen */
+  background-color: rgba(0, 0, 0, 0.9); /* Semi-transparent black */
+  padding: 10px 0;
+  position: fixed; /* Overlay the page */
   left: 0;
   right: 0;
+  top: 0; /* Sticks to the top */
+  z-index: 1000; /* High z-index to overlay everything */
+  transition: transform 0.3s cubic-bezier(0.25, 1, 0.5, 1), opacity 0.3s ease;
+  opacity: 0; /* Hidden by default */
 }
 
 .searchBar.open {
-  transform: translateY(0);
-  transition: transform 0.1s;
+  transform: translateY(0); /* Slide in */
+  opacity: 1; /* Visible */
 }
 
 .searchBar input {
-  margin: 0;
-  padding: 0;
+  margin: 0 auto;
+  padding: 10px;
+  width: 80%; /* Responsive width */
+  font-size: 16px;
+  border: none;
+  outline: none;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
 
 #searchClose {
+  transform: translate(-50%, -50%);
   position: absolute;
-  top: 0;
-  right: 0;
+  top: 50%;
+  right: 20px;
   color: var(--gray-light);
-  padding: 15px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: 0.3s ease all;
+}
+
+#searchClose:hover {
+  font-size: 18px;
+}
+
+body.blur .maincontent {
+  filter: blur(5px); /* Blur the main content */
+  transition: filter 0.3s ease;
+}
+
+.searchBtn {
+  padding: 8px 12px;
+  background-color: var(--gray-light);
+  color: var(--black);
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.searchBtn:hover {
+  background-color: var(--primary-color);
+  transform: scale(1.05);
+  /* color: white; */
+}
+
+@media (width <= 768px) {
+  .searchBar input {
+    width: 70%;
+    font-size: 14px;
+  }
+
+  #searchClose {
+    font-size: 14px;
+  }
+}
+
+@media (width <= 550px) {
+  #searchClose {
+    font-size: 14px;
+    right: 0;
+  }
 }
 
 /* Dashboard Admin */

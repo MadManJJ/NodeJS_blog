@@ -153,25 +153,18 @@ img {
   justify-content: end;
 }
 
-.header__button button {
-  cursor: pointer;
-  display: flex;
-  gap: 0.3rem;
-  align-items: center;
-  border: 0;
-  padding: 6px 12px;
-  background: none;
-  border-radius: var(--border-radius);
-  border: 2px solid transparent;
-  font-size: var(--font-size-base);
+.header__button a {
+  font-size: 20px;
   font-weight: 600;
-  color: var(--black);
-  transition: 0.3s ease-out;
+  text-decoration: none;
+  transition: all 0.2s ease;
+  padding: 10px;
 }
 
-.header__button button:hover {
-  border: 2px solid var(--black);
-  background-color: var(--gray-light);
+.header__button:hover a {
+  background-color: #000;
+  border-radius: 10px;
+  color: white;
 }
 
 .login-btn {

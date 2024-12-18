@@ -3,12 +3,11 @@ document.addEventListener("DOMContentLoaded", function () {
   const searchBar = document.querySelector(".searchBar");
   const searchInput = document.getElementById("searchInput");
   const searchClose = document.getElementById("searchClose");
-
   for (var i = 0; i < allButtons.length; i++) {
     allButtons[i].addEventListener("click", function () {
       searchBar.style.visibility = "visible";
       searchBar.classList.add("open");
-      this.setAttribute("aria-expanded", "true");
+      document.body.classList.add("blur");
       searchInput.focus();
     });
   }
@@ -16,6 +15,16 @@ document.addEventListener("DOMContentLoaded", function () {
   searchClose.addEventListener("click", function () {
     searchBar.style.visibility = "hidden";
     searchBar.classList.remove("open");
-    this.setAttribute("aria-expanded", "false");
+    document.body.classList.remove("blur");
+  });
+  document.addEventListener("click", function (event) {
+    if (
+      !searchBar.contains(event.target) &&
+      !event.target.classList.contains("searchBtn")
+    ) {
+      searchBar.style.visibility = "hidden";
+      searchBar.classList.remove("open");
+      document.body.classList.remove("blur");
+    }
   });
 });

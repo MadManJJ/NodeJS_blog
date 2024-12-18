@@ -1,14 +1,15 @@
 <div class="author">
   <h1 class="author__heading">Hi, I'm Spark.</h1>
   <p class="author__body">
-    Lorem ipsum dolor sit amet consectetur adipisicing elit. Alias dolore labore
-    non qui modi natus vel voluptatem quisquam repudiandae fugit iure quas
-    laboriosam, temporibus quia facilis, sint fuga. Nemo, vel!
+    This is a website that I made. This website let you write blog on it
   </p>
 </div>
-<div class="imgContainer">
-  <img src="/img/cutie.jpg" class="image" alt="" />
+
+<% if (logged) { %>
+<div class="dashboard">
+  <a href="/dashboard">Dashboard</a>
 </div>
+<% } %>
 
 <section class="article">
   <h2 class="article__heading">Latest Posts</h2>
@@ -28,7 +29,7 @@
 
   <% if (nextPage !== null) { %>
   <a href="/?page=<%= nextPage %>" class="pagination">&lt; View Older Posts</a>
-  <% } %> <% if (atLastPage) { %>
+  <% } %> <% if (atLastPage && current != 1) { %>
   <a href="/" class="pagination">Go Home (No Older Posts)</a>
   <% } %>
 </section>
