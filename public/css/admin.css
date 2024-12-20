@@ -391,3 +391,9 @@ img {
   font-weight: 800;
   font-size: 2rem;
 }
+
+.shortcut {
+  width: 30ch;
+  text-align: center;
+  margin: 0 auto;
+}
