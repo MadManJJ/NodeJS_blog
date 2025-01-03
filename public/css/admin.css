@@ -393,7 +393,7 @@ img {
 }
 
 .shortcut {
-  width: 30ch;
+  max-width: 40ch;
   text-align: center;
   margin: 0 auto;
 }

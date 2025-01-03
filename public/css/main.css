@@ -248,20 +248,6 @@ img {
   margin-top: 50px;
 }
 
-.dashboard a {
-  display: inline-block;
-  text-decoration: none;
-  font-weight: bold;
-  font-size: 30px;
-  transition: all ease 0.3s;
-  color: rgb(0, 0, 0);
-}
-
-.dashboard a:hover {
-  color: rgb(95, 93, 93);
-  transform: scale(1.05);
-}
-
 .article__heading {
   margin-top: 4rem;
   margin-bottom: 0;
@@ -505,4 +491,62 @@ body.blur .maincontent {
   text-align: center;
   font-weight: 800;
   font-size: 2rem;
+}
+
+/* contact button */
+/* Container Styles */
+.contact-button {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 24px;
+  gap: 15px;
+  text-decoration: none;
+  font-family: Arial, sans-serif;
+  font-size: 16px;
+  font-weight: 500;
+  color: #1a202c;
+  background: transparent;
+  border: 1px solid #1a202c;
+  overflow: hidden;
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+
+/* Button Hover & Focus */
+.contact-button:hover,
+.contact-button:focus {
+  color: #ffffff;
+}
+
+/* Background Animation */
+.contact-button .button-bg {
+  position: absolute;
+  inset: 0;
+  background: #1a202c;
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform 0.3s ease;
+  z-index: 0;
+}
+
+/* Hover Animation */
+.contact-button:hover .button-bg,
+.contact-button:focus .button-bg {
+  transform: scaleX(1);
+  transform-origin: left;
+}
+
+/* Text Style */
+.contact-button .button-text {
+  position: relative;
+  z-index: 1;
+  transition: transform 0.3s ease;
+}
+
+/* Text Animation */
+.contact-button:hover .button-text,
+.contact-button:focus .button-text {
+  transform: translateX(2px);
 }

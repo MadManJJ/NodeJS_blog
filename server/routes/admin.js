@@ -82,7 +82,7 @@ router.get("/dashboard", authMiddleware, async (req, res) => {
 });
 
 // GET
-// Admin - Create New post
+// Admin - Go to page to Create New post
 router.get("/add-post", authMiddleware, async (req, res) => {
   try {
     const locals = {
@@ -118,7 +118,7 @@ router.post("/add-post", authMiddleware, async (req, res) => {
 });
 
 // GET
-// Admin - Create New post
+// Admin - Go to page to Create Edit post
 router.get("/edit-post/:id", authMiddleware, async (req, res) => {
   try {
     const locals = {
@@ -137,7 +137,7 @@ router.get("/edit-post/:id", authMiddleware, async (req, res) => {
 });
 
 // PUT
-// Admin - Create New post
+// Admin - Edit post
 router.put("/edit-post/:id", authMiddleware, async (req, res) => {
   try {
     await Post.findByIdAndUpdate(req.params.id, {

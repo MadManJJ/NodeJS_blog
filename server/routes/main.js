@@ -52,13 +52,17 @@ router.get("", async (req, res) => {
 router.get("/post/:id", async (req, res) => {
   try {
     let slug = req.params.id; // get the id
-
+    const token = req.cookies.token;
+    let logged = false;
+    if (token) {
+      logged = true;
+    }
     const data = await Post.findById({ _id: slug });
     const locals = {
       title: data.title, // title use in layout
       description: "Simple Blog created with Nodejs, Express & MongoDb.",
     };
-    res.render("post", { locals, data, currentRoute: `/post/${slug}` });
+    res.render("post", { locals, data, currentRoute: `/post/${slug}`, logged });
   } catch (error) {
     console.log(error);
   }
@@ -72,6 +76,11 @@ router.post("/search", async (req, res) => {
     title: "Search", // title use in layout
     description: "Simple Blog created with Nodejs, Express & MongoDb.",
   };
+  const token = req.cookies.token;
+  let logged = false;
+  if (token) {
+    logged = true;
+  }
   try {
     let searchTerm = req.body.searchTerm;
     const searchNoSpecialChar = searchTerm.replace(/[^a-zA-Z0-9 ]/g, "");
@@ -89,6 +98,7 @@ router.post("/search", async (req, res) => {
       locals,
       currentRoute: "/search",
       haveData,
+      logged,
     });
   } catch (error) {
     console.log(error);
@@ -96,14 +106,26 @@ router.post("/search", async (req, res) => {
 });
 
 router.get("/about", (req, res) => {
+  const token = req.cookies.token;
+  let logged = false;
+  if (token) {
+    logged = true;
+  }
   res.render("about", {
     currentRoute: "/about",
+    logged,
   }); //index.ejs
 });
 
 router.get("/contact", (req, res) => {
-  res.render("about", {
+  const token = req.cookies.token;
+  let logged = false;
+  if (token) {
+    logged = true;
+  }
+  res.render("contact", {
     currentRoute: "/contact",
+    logged,
   }); //index.ejs
 });
 

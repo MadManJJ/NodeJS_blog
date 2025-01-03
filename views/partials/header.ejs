@@ -11,13 +11,13 @@
           >About</a
         >
       </li>
-      <li>
+      <!-- <li>
         <a
           href="/contact"
           class="<%= isActiveRoute('/contact', currentRoute) %>"
           >Contact</a
         >
-      </li>
+      </li> -->
     </ul>
   </nav>
 
@@ -48,5 +48,13 @@
       </svg>
     </button>
   </div>
-  <div class="login-btn"><a href="/admin">Login</a></div>
+  <% if (logged) { %>
+  <div class="login-btn logout-btn">
+    <a href="/logout">Logout</a>
+  </div>
+  <% } else { %>
+  <div class="login-btn">
+    <a href="/admin">Login</a>
+  </div>
+  <% } %>
 </header>
