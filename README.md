@@ -63,5 +63,13 @@ This is a simple **Blog application** built using **Node.js**, **Express**, **Mo
 - `/edit-post/:id`: Page to edit an existing blog post. Requires admin login.
 - `/delete-post/:id`: Route to delete a blog post. Requires admin login.
 - `/logout`: Logs out the user by clearing the JWT token.
+  
+### Homepage
+![Homepage](https://github.com/MadManJJ/NodeJS_blog/blob/adee0b2ed300a8de56b892baf09760a1aaa0c1ba/homepage2.png)
 
+### Login Page
+![Login Page](https://github.com/MadManJJ/NodeJS_blog/blob/adee0b2ed300a8de56b892baf09760a1aaa0c1ba/loginpage.png)
+
+### Dashboard
+![Dashboard](https://github.com/MadManJJ/NodeJS_blog/blob/db8836756ff4a33f7024745085264c4b8fab025b/dash3.png)
 
